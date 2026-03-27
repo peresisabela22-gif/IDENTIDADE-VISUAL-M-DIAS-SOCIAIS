@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identidade Visual — Seletor de Estilo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@100;300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Josefin+Sans:wght@100;200;300;400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@100;200;300;400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IvyMode&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #e8e4df;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6560;
+    --accent: #2c2c2c;
+    --selected-border: #2c2c2c;
+    --tag-bg: #f0ece6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-weight: 300;
+  }
+
+  /* HEADER */
+  header {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 56px 24px 48px;
+    letter-spacing: 0.25em;
+  }
+
+  header .label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #a0998f;
+    margin-bottom: 16px;
+  }
+
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+  }
+
+  header p {
+    font-size: 11px;
+    font-weight: 300;
+    color: #a0998f;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 18px;
+  }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    text-align: center;
+    padding: 64px 0 40px;
+  }
+
+  .section-title h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .section-title .line {
+    width: 40px;
+    height: 1px;
+    background: var(--border);
+    margin: 16px auto 0;
+  }
+
+  /* FONT CARDS */
+  .font-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .font-card {
+    background: var(--surface);
+    padding: 36px 32px 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    user-select: none;
+  }
+
+  .font-card:hover {
+    background: #f8f5f1;
+  }
+
+  .font-card.selected {
+    background: #f3ede5;
+    outline: 2px solid var(--selected-border);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  .font-card .check {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: transparent;
+    transition: all 0.2s;
+  }
+
+  .font-card.selected .check {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .font-card .font-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .font-card .font-display {
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .font-card .font-sample {
+    font-size: 11px;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+
+  .font-card .font-tag {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 8.5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: var(--tag-bg);
+    padding: 4px 10px;
+    color: var(--text-secondary);
+  }
+
+  /* CINZEL */
+  .f-cinzel .font-display { font-family: 'Cinzel', serif; font-weight: 400; }
+  .f-cinzel .font-sample { font-family: 'Montserrat', sans-serif; }
+
+  /* CORMORANT */
+  .f-cormorant .font-display { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 38px; }
+  .f-cormorant .font-sample { font-family: 'Lato', sans-serif; font-weight: 300; }
+
+  /* DM SERIF */
+  .f-dm .font-display { font-family: 'DM Serif Display', serif; font-style: italic; }
+  .f-dm .font-sample { font-family: 'Raleway', sans-serif; font-weight: 300; }
+
+  /* PLAYFAIR */
+  .f-playfair .font-display { font-family: 'Playfair Display', serif; font-weight: 400; }
+  .f-playfair .font-sample { font-family: 'Montserrat', sans-serif; font-weight: 300; }
+
+  /* JOSEFIN */
+  .f-josefin .font-display { font-family: 'Josefin Sans', sans-serif; font-weight: 100; letter-spacing: 0.2em; font-size: 28px; }
+  .f-josefin .font-sample { font-family: 'Josefin Sans', sans-serif; font-weight: 300; }
+
+  /* EB GARAMOND */
+  .f-garamond .font-display { font-family: 'EB Garamond', serif; font-size: 36px; font-weight: 400; }
+  .f-garamond .font-sample { font-family: 'EB Garamond', serif; }
+
+  /* RALEWAY */
+  .f-raleway .font-display { font-family: 'Raleway', sans-serif; font-weight: 100; letter-spacing: 0.18em; }
+  .f-raleway .font-sample { font-family: 'Raleway', sans-serif; font-weight: 300; }
+
+  /* LIBRE BASKERVILLE */
+  .f-libre .font-display { font-family: 'Libre Baskerville', serif; font-weight: 400; font-size: 28px; }
+  .f-libre .font-sample { font-family: 'Libre Baskerville', serif; font-style: italic; }
+
+  /* PALETTE SECTION */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .palette-card {
+    background: var(--surface);
+    padding: 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    user-select: none;
+  }
+
+  .palette-card:hover { background: #f8f5f1; }
+
+  .palette-card.selected {
+    background: #f3ede5;
+    outline: 2px solid var(--selected-border);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  .palette-card .check {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: transparent;
+    transition: all 0.2s;
+  }
+
+  .palette-card.selected .check {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .palette-name {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .palette-swatches {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .swatch {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .palette-hex {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .hex-code {
+    font-size: 8.5px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    font-weight: 400;
+    width: 44px;
+    text-align: center;
+  }
+
+  .palette-desc {
+    margin-top: 16px;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* PREVIEW */
+  .preview-section {
+    margin-top: 64px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .preview-header {
+    background: var(--accent);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .preview-header span {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .preview-body {
+    padding: 64px 48px;
+    transition: all 0.4s ease;
+    min-height: 400px;
+    background: #ffffff !important;
+  }
+
+  .preview-body .preview-overline {
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .preview-body .preview-name {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .preview-body .preview-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .preview-divider {
+    width: 40px;
+    height: 1px;
+    margin-bottom: 28px;
+  }
+
+  .preview-body .preview-text {
+    font-size: 13px;
+    line-height: 1.85;
+    max-width: 440px;
+    margin-bottom: 36px;
+  }
+
+  .preview-body .preview-cta {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 14px 28px;
+    border: 1px solid currentColor;
+    cursor: default;
+  }
+
+  .preview-tags {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .preview-tag {
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 6px 14px;
+    border: 1px solid;
+    opacity: 0.7;
+  }
+
+  /* GENERATE BTN */
+  .generate-section {
+    text-align: center;
+    margin-top: 64px;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .generate-section p {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .btn-generate {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-generate:hover { opacity: 0.8; }
+
+  /* SELECTION SUMMARY */
+  .summary-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+
+  .summary-bar.visible { transform: translateY(0); }
+  .summary-bar .summary-text { color: rgba(255,255,255,0.7); }
+  .summary-bar .summary-choices { color: #fff; font-weight: 300; }
+
+  .btn-export {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .btn-export:hover { border-color: rgba(255,255,255,0.7); }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #fff;
+    max-width: 560px;
+    width: 90%;
+    padding: 48px;
+  }
+
+  .modal h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    font-weight: 400;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .modal-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0ece6;
+    padding: 14px 0;
+    font-size: 11px;
+  }
+
+  .modal-row:last-of-type { border-bottom: none; }
+
+  .modal-label {
+    color: #a0998f;
+    letter-spacing: 0.2em;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .modal-value {
+    font-weight: 300;
+    color: #1a1a1a;
+    font-size: 11px;
+  }
+
+  .modal-palette-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .modal-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+
+  .modal-close {
+    display: block;
+    margin: 32px auto 0;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .font-grid, .palette-grid { grid-template-columns: 1fr; }
+    .preview-body { padding: 40px 28px; }
+    .modal { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">Health Business School</div>
+  <h1>IDENTIDADE VISUAL<br>MÍDIAS SOCIAIS</h1>
+  <p>Seletor de Fonte &amp; Paleta de Cores</p>
+</header>
+
+<div class="container">
+
+  <!-- FONTS -->
+  <div class="section-title">
+    <h2>Escolha sua Tipografia</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="font-grid" id="fontGrid">
+
+    <div class="font-card f-cinzel" data-font="Cinzel" data-pair="Montserrat" data-style="Clássico · Elegante" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Cinzel + Montserrat</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Médica especialista em Angiologia e Cirurgia Vascular. Cuidado com excelência.</div>
+      <div class="font-tag">Clássico · Elegante</div>
+    </div>
+
+    <div class="font-card f-cormorant" data-font="Cormorant Garamond" data-pair="Lato" data-style="Refinado · Literário" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Cormorant Garamond + Lato</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Dermatologia estética com naturalidade. Tecnologia a serviço da sua beleza real.</div>
+      <div class="font-tag">Refinado · Literário</div>
+    </div>
+
+    <div class="font-card f-dm" data-font="DM Serif Display" data-pair="Raleway" data-style="Moderno · Editorial" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">DM Serif Display + Raleway</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Dermatologista. Tecnologias que melhoram a qualidade da pele sem mudar seus traços.</div>
+      <div class="font-tag">Moderno · Editorial</div>
+    </div>
+
+    <div class="font-card f-playfair" data-font="Playfair Display" data-pair="Montserrat" data-style="Sofisticado · Clássico" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Playfair Display + Montserrat</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Odontologia com excelência, precisão e cuidado personalizado para cada sorriso.</div>
+      <div class="font-tag">Sofisticado · Clássico</div>
+    </div>
+
+    <div class="font-card f-josefin" data-font="Josefin Sans" data-pair="Josefin Sans" data-style="Minimalista · Contemporâneo" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Josefin Sans</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Ginecologista. Saúde íntima feminina com escuta ativa, ciência e respeito.</div>
+      <div class="font-tag">Minimalista · Contemporâneo</div>
+    </div>
+
+    <div class="font-card f-garamond" data-font="EB Garamond" data-pair="EB Garamond" data-style="Clássico · Atemporal" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">EB Garamond</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Reprodução humana assistida. Caminhos para a maternidade com ciência e sensibilidade.</div>
+      <div class="font-tag">Clássico · Atemporal</div>
+    </div>
+
+    <div class="font-card f-raleway" data-font="Raleway" data-pair="Raleway" data-style="Leve · Geométrico" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Raleway</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Saúde que cuida do todo — corpo, mente e equilíbrio. Atendimento personalizado.</div>
+      <div class="font-tag">Leve · Geométrico</div>
+    </div>
+
+    <div class="font-card f-libre" data-font="Libre Baskerville" data-pair="Montserrat" data-style="Sólido · Confiável" onclick="selectFont(this)">
+      <div class="check">✓</div>
+      <div class="font-name">Libre Baskerville + Montserrat</div>
+      <div class="font-display">Heloisa<br>Brudniewski</div>
+      <div class="font-sample">Tradição médica aliada à tecnologia de ponta. Confiança construída com evidências.</div>
+      <div class="font-tag">Sólido · Confiável</div>
+    </div>
+
+  </div>
+
+  <!-- PALETTES -->
+  <div class="section-title">
+    <h2>Escolha sua Paleta de Cores</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="palette-grid" id="paletteGrid">
+
+    <div class="palette-card" data-palette="Esmeralda" data-colors='["#F2F2F2","#578399","#3f656f","#DA7968","#B38355"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Esmeralda — Andréa Klepacz</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F2F2F2; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#578399"></div>
+        <div class="swatch" style="background:#3f656f"></div>
+        <div class="swatch" style="background:#DA7968"></div>
+        <div class="swatch" style="background:#B38355"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F2F2F2</span>
+        <span class="hex-code">#578399</span>
+        <span class="hex-code">#3f656f</span>
+        <span class="hex-code">#DA7968</span>
+        <span class="hex-code">#B38355</span>
+      </div>
+      <div class="palette-desc">Azul petróleo com terracota quente. Confiança com acolhimento.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Natureza" data-colors='["#EDEDEC","#FEE8D0","#D7B391","#B0714E","#546350"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Natureza — Alexandre Filippo</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#EDEDEC; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#FEE8D0"></div>
+        <div class="swatch" style="background:#D7B391"></div>
+        <div class="swatch" style="background:#B0714E"></div>
+        <div class="swatch" style="background:#546350"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#EDEDEC</span>
+        <span class="hex-code">#FEE8D0</span>
+        <span class="hex-code">#D7B391</span>
+        <span class="hex-code">#B0714E</span>
+        <span class="hex-code">#546350</span>
+      </div>
+      <div class="palette-desc">Verdes sálvia com nude orgânico. Natural e sofisticado.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Tundra" data-colors='["#F5F5F5","#E6C0B4","#879CA8","#4A6A84","#33757E"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Tundra — Bárbara Wiese</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F5F5F5; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#E6C0B4"></div>
+        <div class="swatch" style="background:#879CA8"></div>
+        <div class="swatch" style="background:#4A6A84"></div>
+        <div class="swatch" style="background:#33757E"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F5F5F5</span>
+        <span class="hex-code">#E6C0B4</span>
+        <span class="hex-code">#879CA8</span>
+        <span class="hex-code">#4A6A84</span>
+        <span class="hex-code">#33757E</span>
+      </div>
+      <div class="palette-desc">Azul acinzentado com rosa envelhecido. Moderno e sereno.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Pinheiro" data-colors='["#E3E3D7","#B49C7B","#6B554E","#B5C2AB","#657256"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Pinheiro — J. C. Gaspar</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#E3E3D7; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#B49C7B"></div>
+        <div class="swatch" style="background:#6B554E"></div>
+        <div class="swatch" style="background:#B5C2AB"></div>
+        <div class="swatch" style="background:#657256"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#E3E3D7</span>
+        <span class="hex-code">#B49C7B</span>
+        <span class="hex-code">#6B554E</span>
+        <span class="hex-code">#B5C2AB</span>
+        <span class="hex-code">#657256</span>
+      </div>
+      <div class="palette-desc">Verde sálvia com marrom terroso. Equilíbrio e confiança.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Vinho" data-colors='["#F0EBE3","#3D1A1A","#8B3D3D","#C9A08A","#E8D5C4"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Vinho — Flávia Lahude</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F0EBE3; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#3D1A1A"></div>
+        <div class="swatch" style="background:#8B3D3D"></div>
+        <div class="swatch" style="background:#C9A08A"></div>
+        <div class="swatch" style="background:#E8D5C4"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F0EBE3</span>
+        <span class="hex-code">#3D1A1A</span>
+        <span class="hex-code">#8B3D3D</span>
+        <span class="hex-code">#C9A08A</span>
+        <span class="hex-code">#E8D5C4</span>
+      </div>
+      <div class="palette-desc">Vinho profundo com bege suave. Feminino e empoderado.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Quartzo" data-colors='["#F5F3F0","#FFCBB0","#C39087","#A68981","#D4C4BC"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Quartzo — Paula Vieira</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F5F3F0; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#FFCBB0"></div>
+        <div class="swatch" style="background:#C39087"></div>
+        <div class="swatch" style="background:#A68981"></div>
+        <div class="swatch" style="background:#D4C4BC"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F5F3F0</span>
+        <span class="hex-code">#FFCBB0</span>
+        <span class="hex-code">#C39087</span>
+        <span class="hex-code">#A68981</span>
+        <span class="hex-code">#D4C4BC</span>
+      </div>
+      <div class="palette-desc">Rosa pêssego com nude rosado. Delicado e acolhedor.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Carvão" data-colors='["#F2F0ED","#C8BFB0","#8E857A","#4A4440","#2A2520"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Carvão — Minimalista</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F2F0ED; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#C8BFB0"></div>
+        <div class="swatch" style="background:#8E857A"></div>
+        <div class="swatch" style="background:#4A4440"></div>
+        <div class="swatch" style="background:#2A2520"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F2F0ED</span>
+        <span class="hex-code">#C8BFB0</span>
+        <span class="hex-code">#8E857A</span>
+        <span class="hex-code">#4A4440</span>
+        <span class="hex-code">#2A2520</span>
+      </div>
+      <div class="palette-desc">Escala monocromática neutra. Máximo minimalismo e autoridade.</div>
+    </div>
+
+    <div class="palette-card" data-palette="Jade" data-colors='["#F4F6F4","#B8CCBA","#6E9E76","#3D6B45","#1E3D25"]' onclick="selectPalette(this)">
+      <div class="check">✓</div>
+      <div class="palette-name">Jade — Bem-Estar</div>
+      <div class="palette-swatches">
+        <div class="swatch" style="background:#F4F6F4; border:1px solid #eee"></div>
+        <div class="swatch" style="background:#B8CCBA"></div>
+        <div class="swatch" style="background:#6E9E76"></div>
+        <div class="swatch" style="background:#3D6B45"></div>
+        <div class="swatch" style="background:#1E3D25"></div>
+      </div>
+      <div class="palette-hex">
+        <span class="hex-code">#F4F6F4</span>
+        <span class="hex-code">#B8CCBA</span>
+        <span class="hex-code">#6E9E76</span>
+        <span class="hex-code">#3D6B45</span>
+        <span class="hex-code">#1E3D25</span>
+      </div>
+      <div class="palette-desc">Verde jade em gradação. Saúde, equilíbrio e vitalidade.</div>
+    </div>
+
+  </div>
+
+  <!-- LIVE PREVIEW -->
+  <div class="section-title">
+    <h2>Pré-visualização</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="preview-section">
+    <div class="preview-header">
+      <span>Preview ao vivo</span>
+      <span id="previewLabel">Selecione fonte e paleta acima</span>
+    </div>
+    <div class="preview-body" id="previewBody">
+      <div class="preview-overline" id="prevOverline">Médica Especialista</div>
+      <div class="preview-name" id="prevName">Dra. Heloisa Brudniewski</div>
+      <div class="preview-subtitle" id="prevSubtitle">Especialidade · Área de Atuação</div>
+      <div class="preview-divider" id="prevDivider"></div>
+      <div class="preview-text" id="prevText">
+        Cuidado personalizado, baseado em evidências e com escuta ativa. Cada paciente é único — e merece um tratamento à altura.
+      </div>
+      <div class="preview-cta" id="prevCta">Agendar Consulta</div>
+      <div class="preview-tags">
+        <div class="preview-tag" id="prevTag1">Consulta</div>
+        <div class="preview-tag" id="prevTag2">Tratamentos</div>
+        <div class="preview-tag" id="prevTag3">Saúde</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="generate-section">
+    <p>Satisfeito com sua escolha?</p>
+    <button class="btn-generate" onclick="openModal()">Confirmar Seleção</button>
+  </div>
+
+</div>
+
+<!-- SUMMARY BAR -->
+<div class="summary-bar" id="summaryBar">
+  <span class="summary-text">Seleção atual:</span>
+  <span class="summary-choices" id="summaryChoices">—</span>
+  <button class="btn-export" onclick="openModal()">Ver resumo</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <h3>RESUMO DA IDENTIDADE VISUAL</h3>
+    <div class="modal-row">
+      <span class="modal-label">Tipografia</span>
+      <span class="modal-value" id="modalFont">—</span>
+    </div>
+    <div class="modal-row">
+      <span class="modal-label">Fonte corpo</span>
+      <span class="modal-value" id="modalPair">—</span>
+    </div>
+    <div class="modal-row">
+      <span class="modal-label">Estilo</span>
+      <span class="modal-value" id="modalStyle">—</span>
+    </div>
+    <div class="modal-row">
+      <span class="modal-label">Paleta</span>
+      <span class="modal-value" id="modalPalette">—</span>
+    </div>
+    <div class="modal-row" style="align-items: flex-start; flex-direction: column; gap: 12px;">
+      <span class="modal-label">Cores</span>
+      <div class="modal-palette-row" id="modalColors"></div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<script>
+  let selectedFont = null;
+  let selectedPalette = null;
+
+  const fontConfig = {
+    'Cinzel':              { css: "'Cinzel', serif", bodyCss: "'Montserrat', sans-serif" },
+    'Cormorant Garamond':  { css: "'Cormorant Garamond', serif", bodyCss: "'Lato', sans-serif", italic: true },
+    'DM Serif Display':    { css: "'DM Serif Display', serif", bodyCss: "'Raleway', sans-serif", italic: true },
+    'Playfair Display':    { css: "'Playfair Display', serif", bodyCss: "'Montserrat', sans-serif" },
+    'Josefin Sans':        { css: "'Josefin Sans', sans-serif", bodyCss: "'Josefin Sans', sans-serif", weight: 100, spacing: '0.15em' },
+    'EB Garamond':         { css: "'EB Garamond', serif", bodyCss: "'EB Garamond', serif" },
+    'Raleway':             { css: "'Raleway', sans-serif", bodyCss: "'Raleway', sans-serif", weight: 100, spacing: '0.12em' },
+    'Libre Baskerville':   { css: "'Libre Baskerville', serif", bodyCss: "'Montserrat', sans-serif" },
+  };
+
+  function selectFont(el) {
+    document.querySelectorAll('.font-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedFont = {
+      name: el.dataset.font,
+      pair: el.dataset.pair,
+      style: el.dataset.style
+    };
+    updatePreview();
+    updateSummary();
+  }
+
+  function selectPalette(el) {
+    document.querySelectorAll('.palette-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedPalette = {
+      name: el.dataset.palette,
+      colors: JSON.parse(el.dataset.colors)
+    };
+    updatePreview();
+    updateSummary();
+  }
+
+  function updatePreview() {
+    const body = document.getElementById('previewBody');
+    const label = document.getElementById('previewLabel');
+
+    if (selectedFont) {
+      const fc = fontConfig[selectedFont.name] || {};
+      body.style.fontFamily = fc.bodyCss || "'Montserrat', sans-serif";
+      
+      const nameEl = document.getElementById('prevName');
+      nameEl.style.fontFamily = fc.css || 'inherit';
+      nameEl.style.fontStyle = fc.italic ? 'italic' : 'normal';
+      nameEl.style.fontWeight = fc.weight || '400';
+      nameEl.style.letterSpacing = fc.spacing || 'normal';
+
+      const overline = document.getElementById('prevOverline');
+      overline.style.fontFamily = fc.bodyCss || 'inherit';
+
+      const subtitle = document.getElementById('prevSubtitle');
+      subtitle.style.fontFamily = fc.bodyCss || 'inherit';
+
+      const cta = document.getElementById('prevCta');
+      cta.style.fontFamily = fc.bodyCss || 'inherit';
+    }
+
+    if (selectedPalette) {
+      const colors = selectedPalette.colors;
+      body.style.color = colors[3] || '#1a1a1a';
+
+      const divider = document.getElementById('prevDivider');
+      divider.style.background = colors[2] || '#ccc';
+
+      const cta = document.getElementById('prevCta');
+      cta.style.color = colors[3];
+      cta.style.borderColor = colors[3];
+
+      ['prevTag1','prevTag2','prevTag3'].forEach(id => {
+        const t = document.getElementById(id);
+        t.style.borderColor = colors[2];
+        t.style.color = colors[2];
+      });
+
+      const overline = document.getElementById('prevOverline');
+      overline.style.color = colors[2];
+    }
+
+    if (selectedFont || selectedPalette) {
+      const parts = [];
+      if (selectedFont) parts.push(selectedFont.name);
+      if (selectedPalette) parts.push(selectedPalette.name);
+      label.textContent = parts.join(' · ');
+    }
+  }
+
+  function updateSummary() {
+    const bar = document.getElementById('summaryBar');
+    const choices = document.getElementById('summaryChoices');
+    if (selectedFont || selectedPalette) {
+      bar.classList.add('visible');
+      const parts = [];
+      if (selectedFont) parts.push(selectedFont.name);
+      if (selectedPalette) parts.push('Paleta ' + selectedPalette.name);
+      choices.textContent = parts.join(' · ');
+    }
+  }
+
+  function openModal() {
+    document.getElementById('modalFont').textContent = selectedFont ? selectedFont.name : 'Não selecionado';
+    document.getElementById('modalPair').textContent = selectedFont ? selectedFont.pair : '—';
+    document.getElementById('modalStyle').textContent = selectedFont ? selectedFont.style : '—';
+    document.getElementById('modalPalette').textContent = selectedPalette ? selectedPalette.name : 'Não selecionado';
+    
+    const colorsEl = document.getElementById('modalColors');
+    colorsEl.innerHTML = '';
+    if (selectedPalette) {
+      selectedPalette.colors.forEach(c => {
+        const d = document.createElement('div');
+        d.className = 'modal-swatch';
+        d.style.background = c;
+        if (c.toUpperCase() === '#F2F2F2' || c.toUpperCase() === '#EDEDEC' || c.toUpperCase() === '#F5F3F0') {
+          d.style.border = '1px solid #ddd';
+        }
+        colorsEl.appendChild(d);
+      });
+    }
+
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modalOverlay') || !e.target.closest) {
+      document.getElementById('modalOverlay').classList.remove('open');
+    }
+  }
+</script>
+</body>
+</html>
